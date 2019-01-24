@@ -20,12 +20,6 @@ export default {
   components: {
     Movie
   },
-  props: {
-    isMobile: {
-      type: Boolean,
-      default: false
-    }
-  },
   async beforeMount() {
     await this.$store.dispatch("getMovies");
     await this.$store.dispatch("getGenreList");
@@ -53,6 +47,7 @@ export default {
 .movies-list {
   display: flex;
   flex-wrap: wrap;
+  flex-basis: content;
 }
 @media screen and (max-width: 600px) {
   .movies {

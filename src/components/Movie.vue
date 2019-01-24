@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "Movie",
   props: {
@@ -29,30 +27,30 @@ export default {
       type: Object,
       default: () => {
         return {
-          name: ''
-        }
+          name: ""
+        };
       }
     }
   },
   computed: {
     ratingCode() {
-      let color = ''
-      if(this.movie.vote_average >= 7.5) {
-        color = 'green'
-      } else if (this.movie.vote_average >= 5){
-        color = 'yellow'
+      let color = "";
+      if (this.movie.vote_average >= 7.5) {
+        color = "green";
+      } else if (this.movie.vote_average >= 5) {
+        color = "yellow";
       }
-      return color
+      return color;
     },
     genres() {
       let genres = [];
       this.movie.genre_ids.forEach(id => {
-        const genreObj = this.genreList[`id_${id}`]
-        if(genreObj){
-          genres.push(genreObj.name)
+        const genreObj = this.genreList[`id_${id}`];
+        if (genreObj) {
+          genres.push(genreObj.name);
         }
       });
-      return genres
+      return genres;
     }
   }
 };
@@ -60,14 +58,12 @@ export default {
 
 <style lang="scss" scoped>
 .movie {
-  flex: 1;
   display: flex;
   flex-direction: column;
   margin: 10px;
   border: 5px solid #fff;
   background: #fff;
-  min-width: 190px;
-  max-width: 260px;
+  width: calc(20% - 20px);
   position: relative;
   img {
     width: 100%;
@@ -82,17 +78,17 @@ export default {
     color: #fff;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     font-weight: 600;
-    font-size: .9rem;
+    font-size: 0.9rem;
     background: #989898;
     text-align: center;
     line-height: 1.8rem;
-    &.green{
+    &.green {
       background: #10c343;
     }
-    &.yellow{
+    &.yellow {
       background: #fde40a;
       text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
-      color: #222
+      color: #222;
     }
   }
   .desc {
@@ -125,10 +121,29 @@ export default {
     }
   }
 }
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+  .movie {
+    width: calc(25% - 20px);
+  }
+}
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+  .movie {
+    width: calc(33.3% - 20px);
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  .movie {
+    width: calc(50% - 20px);
+  }
+}
 @media screen and (max-width: 600px) {
   .movie {
-    max-width: 340px;
+    width: calc(100% - 20px);
     padding: 10px;
+    .rating {
+      top: 15px;
+      right: 15px;
+    }
     .desc {
       h4 {
         overflow: hidden;

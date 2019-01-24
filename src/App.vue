@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       isMobile: false
-    }
+    };
   },
   beforeMount() {
     if (window.innerWidth <= 600) {
@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style <style lang="scss">
+<style lang="scss">
 body {
   background: #091c24;
 }
