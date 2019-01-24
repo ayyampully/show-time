@@ -33,6 +33,10 @@ export default {
     }
   },
   computed: {
+    /**
+     * return a css class name based on vote_average
+     * @returns a string
+     */
     ratingCode() {
       let color = "";
       if (this.movie.vote_average >= 7.5) {
@@ -42,6 +46,10 @@ export default {
       }
       return color;
     },
+    /**
+     * Returns an object containing name and count of each genre id
+     * @returns an object
+     */
     genres() {
       let genres = [];
       this.movie.genre_ids.forEach(id => {
