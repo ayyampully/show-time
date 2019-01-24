@@ -1,4 +1,4 @@
-# movie-list
+# movie-list [![Build Status](https://travis-ci.com/ayyampully/show-time.svg?branch=master)](https://travis-ci.com/ayyampully/show-time)
 
 ## Project setup
 ```
