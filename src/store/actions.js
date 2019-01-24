@@ -23,19 +23,31 @@ const actions = {
     store.commit('updateImageConfig', images)
   },
   async getGenreList(store) {
-    let uniqueGenres = new Set();
+    let uniqueGenres = {};
     store.state.filteredMovies.forEach(movie => {
       movie.genre_ids.forEach(genre => {
-        uniqueGenres.add(genre);
+        if(uniqueGenres[genre]){
+          uniqueGenres[genre].count += 1
+        } else {
+          uniqueGenres[genre] = {
+            id: genre,
+            count: 1
+          }
+        }
       });
     });
     const { data } = await DataService.getGenreList()
     const { genres } = data
     let mappedObj = {}
-    uniqueGenres.forEach(id => {
+    for(let key in uniqueGenres){
+      const { id, count } = uniqueGenres[key]
       const { name } = _.find(genres, { id });
-      mappedObj[`id_${id}`] = name
-    })
+      mappedObj[`id_${id}`] = {
+        id,
+        count,
+        name
+      }
+    }
     store.commit('updateGenres', mappedObj)
   },
   filterMovies(store, filters) {

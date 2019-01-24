@@ -7,9 +7,9 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('Configurations BIT', () => {
-  const id_1 = 'Action'
-  const id_2 = 'Adventure'
-  const id_3 = 'Comedy'
+  const id_1 = { name: 'Action', id: 1, count: 2 }
+  const id_2 = { name: 'Adventure', id: 2, count: 4 }
+  const id_3 = { name: 'Comedy', id: 3, count: 1 }
   let getters = {
     getGenreList: () => {
       return {
@@ -38,8 +38,8 @@ describe('Configurations BIT', () => {
 
   it('should have all genres rendered properly', () => {
     let genres = wrapper.findAll('.genre label')
-    expect(genres.at(0).text()).toBe(id_1)
-    expect(genres.at(1).text()).toBe(id_2)
-    expect(genres.at(2).text()).toBe(id_3)
+    expect(genres.at(0).text()).toBe(`${id_1.name} (${id_1.count})`)
+    expect(genres.at(1).text()).toBe(`${id_2.name} (${id_2.count})`)
+    expect(genres.at(2).text()).toBe(`${id_3.name} (${id_3.count})`)
   })
 })

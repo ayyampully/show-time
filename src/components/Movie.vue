@@ -1,11 +1,11 @@
 <template>
   <div v-if="movie" class="movie">
     <span :class="ratingCode" class="rating">{{movie.vote_average}}</span>
-    <img :src="baseUrl + movie.poster_path" :alt="movie.original_title"/>
+    
     <div class="desc">
       <h4 :title="movie.title">{{movie.title}}</h4>
       <div class="genres">
-        <span v-for="id in movie.genre_ids" :key="id" >{{ genreList[`id_${id}`] }}</span>
+        <span v-for="genre in genres" :key="genre" >{{ genre }}</span>
       </div>
     </div>
   </div>
@@ -27,7 +27,11 @@ export default {
     },
     genreList: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {
+          name: ''
+        }
+      }
     }
   },
   computed: {
@@ -39,6 +43,16 @@ export default {
         color = 'yellow'
       }
       return color
+    },
+    genres() {
+      let genres = [];
+      this.movie.genre_ids.forEach(id => {
+        const genreObj = this.genreList[`id_${id}`]
+        if(genreObj){
+          genres.push(genreObj.name)
+        }
+      });
+      return genres
     }
   }
 };

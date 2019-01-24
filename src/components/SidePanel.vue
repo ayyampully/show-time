@@ -26,15 +26,15 @@
       
       <div class="genre">
         <h4>Genre</h4>
-        <div v-for="(genre, key) in genreList" :key="genre" class="input-control">
+        <div v-for="genre in genreList" :key="genre.id" class="input-control">
           <input
             type="checkbox"
-            :name="genre"
-            :value="key"
-            :id="genre"
-            @change="filterMovies($event, key)"
+            :name="genre.id"
+            :value="genre.id"
+            :id="genre.id"
+            @change="filterMovies($event, genre.id)"
           />
-          <label :for="genre">{{ genre }}</label>
+          <label :for="genre.id">{{ genre.name }} ({{genre.count}})</label>
         </div>
       </div>
     </div>
@@ -66,13 +66,12 @@ export default {
     };
   },
   methods: {
-    filterMovies(evt, key) {
-      if (key) {
-        const keySplit = parseInt(key.split("_")[1]);
+    filterMovies(evt, id) {
+      if (id) {
         if (evt.target.checked) {
-          this.filters.add(keySplit);
+          this.filters.add(id);
         } else {
-          this.filters.delete(keySplit);
+          this.filters.delete(id);
         }
       }
       this.$store.dispatch("filterMovies", {

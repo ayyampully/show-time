@@ -3,8 +3,8 @@ import Movie from '../../src/components/Movie.vue'
 
 describe('Movie', () => {
   const title = 'Bumblebee'
-  const id_1 = 'Action'
-  const id_2 = 'Adventure'
+  const id_1 = { name: 'Action', id: 1, count: 2 }
+  const id_2 = { name: 'Adventure', id: 2, count: 4 }
   const vote_average = 7.6
   const wrapper = mount(Movie, {
     propsData: {
@@ -27,8 +27,8 @@ describe('Movie', () => {
   })
   it('should have correct genres', () => {
     const genres = wrapper.findAll('.genres span')
-    expect(genres.at(0).text()).toBe(id_1)
-    expect(genres.at(1).text()).toBe(id_2)
+    expect(genres.at(0).text()).toBe(id_1.name)
+    expect(genres.at(1).text()).toBe(id_2.name)
   })
   it('should have correct rating', () => {
     const rating = wrapper.find('span.rating').text()
