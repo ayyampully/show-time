@@ -75,9 +75,11 @@ const actions = {
     const { rating, genres } = filters
     let moviesToFilter = moviesCopy.slice()
     moviesToFilter = moviesToFilter.filter(movie => movie.vote_average >= rating)
-    genres.forEach(key => {
-      moviesToFilter = moviesToFilter.filter(movie => movie.genre_ids.includes(key))
-    })
+    if (genres) {
+      genres.forEach(key => {
+        moviesToFilter = moviesToFilter.filter(movie => movie.genre_ids.includes(key))
+      })
+    }
     store.commit('updateMovies', moviesToFilter)
   }
 }

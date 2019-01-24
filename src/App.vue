@@ -4,8 +4,8 @@
       <h1>ShowTime <sup>beta</sup></h1>
     </header>
     <section class="content">
-      <SidePanel v-bind="{ isMobile }" />
-      <MoviesList v-bind="{ isMobile }" />
+      <SidePanel v-bind="{ isMobile, defaultRating }" />
+      <MoviesList v-bind="{ defaultRating }" />
     </section>
     
   </div>
@@ -23,7 +23,8 @@ export default {
   },
   data() {
     return {
-      isMobile: false
+      isMobile: false,
+      defaultRating: 3
     };
   },
   beforeMount() {

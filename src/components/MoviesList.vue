@@ -20,10 +20,19 @@ export default {
   components: {
     Movie
   },
+  props: {
+    defaultRating: {
+      type: Number,
+      default: 3
+    }
+  },
   async beforeMount() {
     await this.$store.dispatch("getMovies");
     await this.$store.dispatch("getGenreList");
     await this.$store.dispatch("getImageConfig");
+    this.$store.dispatch("filterMovies", {
+      rating: this.defaultRating
+    });
   },
   computed: {
     ...mapGetters({

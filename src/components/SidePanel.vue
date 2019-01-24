@@ -51,6 +51,10 @@ export default {
     isMobile: {
       type: Boolean,
       default: false
+    },
+    defaultRating: {
+      type: Number,
+      default: 3
     }
   },
   computed: {
@@ -61,7 +65,7 @@ export default {
   data() {
     return {
       filters: new Set(),
-      rating: 3,
+      rating: this.defaultRating,
       showMobileNav: !this.isMobile
     };
   },
