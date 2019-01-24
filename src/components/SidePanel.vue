@@ -5,7 +5,7 @@
       <span></span>
       <span></span>
     </div>
-    <div v-show="showMobileNav" class="filters-wrap">
+    <div class="filters-wrap" :class="{ active: showMobileNav }">
       <header>
         <h2>Filters</h2>
       </header>
@@ -177,6 +177,12 @@ export default {
     width: 100%;
     .mobile-nav {
       display: block;
+    }
+    .filters-wrap {
+      display: none;
+      &.active {
+        display: block;
+      }
     }
   }
 }

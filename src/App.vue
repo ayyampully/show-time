@@ -5,7 +5,7 @@
     </header>
     <section class="content">
       <SidePanel v-bind="{ isMobile }" />
-      <Movies v-bind="{ isMobile }" />
+      <MoviesList v-bind="{ isMobile }" />
     </section>
     
   </div>
@@ -13,13 +13,18 @@
 
 <script>
 import SidePanel from "./components/SidePanel.vue";
-import Movies from "./components/Movies.vue";
+import MoviesList from "./components/MoviesList.vue";
 
 export default {
   name: "app",
   components: {
     SidePanel,
-    Movies
+    MoviesList
+  },
+  data() {
+    return {
+      isMobile: false
+    }
   },
   beforeMount() {
     if (window.innerWidth <= 600) {

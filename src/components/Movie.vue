@@ -1,5 +1,6 @@
 <template>
   <div v-if="movie" class="movie">
+    <span :class="ratingCode" class="rating">{{movie.vote_average}}</span>
     <img :src="baseUrl + movie.poster_path" :alt="movie.original_title"/>
     <div class="desc">
       <h4 :title="movie.title">{{movie.title}}</h4>
@@ -28,6 +29,17 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+  computed: {
+    ratingCode() {
+      let color = ''
+      if(this.movie.vote_average >= 7.5) {
+        color = 'green'
+      } else if (this.movie.vote_average >= 5){
+        color = 'yellow'
+      }
+      return color
+    }
   }
 };
 </script>
@@ -42,8 +54,32 @@ export default {
   background: #fff;
   min-width: 190px;
   max-width: 260px;
+  position: relative;
   img {
     width: 100%;
+  }
+  .rating {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+    font-size: .9rem;
+    background: #989898;
+    text-align: center;
+    line-height: 1.8rem;
+    &.green{
+      background: #10c343;
+    }
+    &.yellow{
+      background: #fde40a;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+      color: #222
+    }
   }
   .desc {
     flex: 1;
