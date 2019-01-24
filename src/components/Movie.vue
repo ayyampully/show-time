@@ -1,5 +1,5 @@
 <template>
-  <div class="movie">
+  <div v-if="movie" class="movie">
     <img :src="baseUrl + movie.poster_path" :alt="movie.original_title"/>
     <div class="desc">
       <h4 :title="movie.title">{{movie.title}}</h4>
